@@ -2,7 +2,6 @@ package ebay.sales.statistics.rest.controller;
 
 import ebay.sales.statistics.rest.model.SalesInfo;
 import ebay.sales.statistics.service.SalesService;
-import ebay.sales.statistics.service.StatisticsService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +18,6 @@ import static org.springframework.http.MediaType.APPLICATION_FORM_URLENCODED_VAL
 @RequiredArgsConstructor
 public class SalesStatisticsController {
     private final SalesService salesService;
-    private final StatisticsService statisticsService;
 
     @PostMapping(path = "/sales", consumes = {APPLICATION_FORM_URLENCODED_VALUE})
     public Mono<ResponseEntity> sale(Sales sales) {
@@ -29,12 +27,12 @@ public class SalesStatisticsController {
 
     @GetMapping(path = "/statistics")
     public Mono<ResponseEntity<SalesInfo>> getSalesInfo() {
-        SalesInfo salesInfo = statisticsService.getSalesInfo();
+        SalesInfo salesInfo = salesService.getSalesInfo();
         return Mono.just(ResponseEntity.ok(salesInfo));
     }
 
     @Data
-    class Sales{
+    class Sales {
         String sales_amount;
     }
 }

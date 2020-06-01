@@ -10,6 +10,6 @@ import lombok.RequiredArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class SalesInfo {
-    private Float totalSalesAmount;
-    private Float averageAmountPerOrder;
+    private double totalSalesAmount;
+    private double averageAmountPerOrder;
 }
